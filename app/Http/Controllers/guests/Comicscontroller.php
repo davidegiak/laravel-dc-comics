@@ -17,7 +17,7 @@ class Comicscontroller extends Controller
         $data = [
             "comics"=> $all
         ];
-        return view("home", $data);
+        return view("comics.index", $data);
     }
 
     /**
@@ -25,7 +25,7 @@ class Comicscontroller extends Controller
      */
     public function create()
     {
-        //
+        return view("comics.create");
     }
 
     /**
@@ -45,7 +45,7 @@ class Comicscontroller extends Controller
         $data = [
             "comic"=> $comic
         ];
-        return view("show", $data);
+        return view("comics.show", $data);
     }
 
     /**

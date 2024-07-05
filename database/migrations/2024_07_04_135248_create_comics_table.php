@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('comics', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 200);
+            $table->char('title', 200);
             $table->date('drop_date');
-            $table->tinyInteger('votes');
+            $table->char('price', 200);
+            $table->mediumText('thumb');
+            $table->mediumText('description');
             $table->timestamps();
         });
     }

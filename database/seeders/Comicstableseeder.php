@@ -12,13 +12,16 @@ class Comicstableseeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker): void
+    public function run(): void
     {
-        for ($i = 0; $i < 10; $i++) {
+        $data = config("data");
+        foreach ($data as $key => $item) {
             $newComic = new Comic();
-            $newComic->title = $faker->name();
-            $newComic->drop_date = $faker->dateTime();
-            $newComic->votes = $faker->numberBetween(0,5);
+            $newComic->title = $item['title'];
+            $newComic->drop_date = $item['sale_date'];
+            $newComic->price = $item['price'];
+            $newComic->thumb = $item['thumb'];
+            $newComic->description = $item['description'];
             $newComic->save();
         }
     }

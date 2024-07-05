@@ -1,0 +1,13 @@
+#cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.imgCont{
+    height: 22rem;
+    width: 18rem;
+    object-fit: cover;
+}
+img {
+    width: 100%;
+}
