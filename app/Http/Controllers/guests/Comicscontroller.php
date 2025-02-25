@@ -33,15 +33,26 @@ class Comicscontroller extends Controller
      */
     public function store(Request $request, Comic $comic)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            "title" => "required|min:3|max:200", //perchè 200? v. migration
+            "description" => "required|min:12|max:255", //perchè 255? v. migration
+            "price" => "required|decimal:2|max:999.99|min:0.99",
+            "drop_date" => "required|date",
+            "thumb" => "required|max:255",
+        ]);
 
-        $comic->title = $data['title'];
-        $comic->drop_date = $data['drop_date'];
-        $comic->price = $data['price'];
-        $comic->thumb = $data['thumb'];
-        $comic->description = $data['description'];
-        $comic->save();
-        return redirect()->route('comics.show', $comic->id);
+        $newComic = new Comic();
+        $newComic->fill($data);
+        $newComic->save();
+        return redirect()->route('comics.show', $newComic);
+
+        // $comic->title = $data['title'];
+        // $comic->drop_date = $data['drop_date'];
+        // $comic->price = $data['price'];
+        // $comic->thumb = $data['thumb'];
+        // $comic->description = $data['description'];
+        // $comic->save();
+        // return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -71,16 +82,34 @@ class Comicscontroller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->validate([
+            "title" => "required|min:3|max:200", //perchè 200? v. migration
+            "description" => "required|min:12|max:2000", //perchè 255? v. migration
+            "price" => "required|decimal:2|max:999.99|min:0.99",
+            "drop_date" => "required|date",
+            "thumb" => "required|max:2000",
+        ]);
+        $comic->update($data);
+
+        // $data = $request->all();
+        // $comic->title = $data['title'];
+        // $comic->drop_date = $data['drop_date'];
+        // $comic->price = $data['price'];
+        // $comic->thumb = $data['thumb'];
+        // $comic->description = $data['description'];
+        // $comic->save();
+        return redirect()->route('comics.show', $comic)->with('message' , 'comic updated');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }

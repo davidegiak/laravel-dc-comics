@@ -2,8 +2,13 @@
 
 body {
     font-family: sans-serif;
-    background: #222;
+    background: #1c1c1c;
     color: white;
+    background-image: url(/public/images/footer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 * {
@@ -12,3 +17,19 @@ body {
     margin: 0;
 }
 
+.comic-neue-bold {
+    font-family: "Comic Neue", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.my-bg{
+    background-color: #0c7cec;
+}
+.my-text{
+    color: #0c7cec;
+}
+
+.my-container{
+    width: 900px
+}
